@@ -1,20 +1,20 @@
-package com.example.project5;
+package com.example.project5.pizza;
 
 import java.util.ArrayList;
 
 /**
- * Subclass of Pizza that Represents a Deluxe pizza.
+ * Subclass of Pizza that Represents a Meatzza pizza.
  * @author Marc-Arthur Saint Louis and Lamita Farroukh.
  */
-public class Deluxe extends Pizza {
-    private static final double COST_OF_SMALL = 18.99;
-    private static final double COST_OF_MEDIUM = 20.99;
-    private static final double COST_OF_LARGE = 22.99;
+public class Meatzza extends Pizza {
+    private static final double COST_OF_SMALL = 19.99;
+    private static final double COST_OF_MEDIUM = 21.99;
+    private static final double COST_OF_LARGE = 23.99;
 
     /**
-     * This is the default constructor of the class.
+     * This is the default constructor for the class.
      */
-    public Deluxe()
+    public Meatzza()
     {
         super();
     }
@@ -23,22 +23,21 @@ public class Deluxe extends Pizza {
      * Parametrized constructor that uses the style to create this class.
      * @param style is the chosen style of the pizza.
      */
-    public Deluxe (String style)
+    public Meatzza (String style)
     {
         super();
-        setCrust(style.equals("Chicago-style") ? Crust.DEEP_DISH :
-                Crust.BROOKLYN);
+        setCrust(style.equals("Chicago-style") ? Crust.STUFFED :
+                Crust.HAND_TOSSED);
         ArrayList<Topping> toppings = new ArrayList<>();
         toppings.add(Topping.SAUSAGE);
         toppings.add(Topping.PEPPERONI);
-        toppings.add(Topping.GREEN_PEPPER);
-        toppings.add(Topping.ONION);
-        toppings.add(Topping.MUSHROOM);
+        toppings.add(Topping.BEEF);
+        toppings.add(Topping.HAM);
         this.setToppings(toppings);
     }
 
     /**
-     * This method calculates the price of a Deluxe pizza.
+     * This method calculates the price of a Meatzza pizza.
      * @return the cost as a double.
      */
     @Override

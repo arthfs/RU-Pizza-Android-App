@@ -1,4 +1,4 @@
-package com.example.project5;
+package com.example.project5.pizza;
 
 /**
  * Interface that lets the user create 4 types of pizza.

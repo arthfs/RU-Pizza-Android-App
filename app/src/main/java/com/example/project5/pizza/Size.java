@@ -1,4 +1,4 @@
-package com.example.project5;
+package com.example.project5.pizza;
 
 /**
  * Enum class that includes the different sizes of the pizzas.

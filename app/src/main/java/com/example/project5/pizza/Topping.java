@@ -1,4 +1,4 @@
-package com.example.project5;
+package com.example.project5.pizza;
 
 /**
  * Enum class that includes all the toppings used by the pizzas.

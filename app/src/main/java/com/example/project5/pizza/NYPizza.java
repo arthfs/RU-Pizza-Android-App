@@ -1,4 +1,4 @@
-package com.example.project5;
+package com.example.project5.pizza;
 
 /**
  * Concrete class used to create pizzas according to a New York style.

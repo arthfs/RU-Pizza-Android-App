@@ -2,7 +2,6 @@ package com.example.project5;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.service.controls.actions.FloatAction;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,7 +17,12 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.time.Duration;
+import com.example.project5.pizza.ChicagoPizza;
+import com.example.project5.pizza.Order;
+import com.example.project5.pizza.Pizza;
+import com.example.project5.pizza.PizzaFactory;
+import com.example.project5.pizza.Size;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -27,8 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private static int orderNumber = 1;
     private ArrayList<Order> currentOrders = new ArrayList<>();
     Order selectedOrder;
-    ItemsAdapter adapter;
-
+    ItemsAdapter pizzaAdapter;
 
     private void display(Context context, String message)
     {
@@ -42,9 +45,9 @@ public class MainActivity extends AppCompatActivity {
         currentOrders.add(order);
 
         Spinner spinner =  findViewById(R.id.orderSpinner);
-        ArrayList<CharSequence> currOrders = new ArrayList<>();
-        for (Order tempOrder: currentOrders)
-            currOrders.add(tempOrder.toString());
+        //ArrayList<CharSequence> currOrders = new ArrayList<>();
+       // for (Order tempOrder: currentOrders)
+        //    currOrders.add(tempOrder.toString());
 
        ArrayAdapter<Order> spinnerAdapter = new ArrayAdapter<Order>(this,
                android.R.layout.simple_spinner_item,  currentOrders);
@@ -62,8 +65,9 @@ public class MainActivity extends AppCompatActivity {
            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                if (currentOrders.size() > 1) {
                    //spinnerAdapter.
-                   Log.d("order", currentOrders.get(1).toString());
+                  // Log.d("order", currentOrders.get(1).toString());
                }
+
                    selectedOrder = currentOrders.get(position);
 
                //display(parent.getContext(), selectedOrder.toString());
@@ -113,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
+        //get the recyclerview from the UI
         RecyclerView recyclerView = findViewById(R.id.pizzaList);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main),
@@ -140,8 +145,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         // add all the pizzas to the adapter
-        adapter = new ItemsAdapter(pizzas);
-        recyclerView.setAdapter(adapter);
+        pizzaAdapter = new ItemsAdapter(pizzas);
+        recyclerView.setAdapter(pizzaAdapter);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         setUp();

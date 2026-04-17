@@ -1,24 +1,20 @@
 package com.example.project5;
 
-import android.content.ClipData;
-import android.content.res.Resources;
-import android.content.res.loader.ResourcesLoader;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.project5.pizza.Pizza;
 
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsHolder> {
     private List<Pizza> pizzas;
@@ -115,8 +111,9 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsHolder>
             style = itemView.findViewById(R.id.pizza_style);
             crust = itemView.findViewById(R.id.pizza_crust);
             toppings = itemView.findViewById(R.id.pizza_toppings);
-            price = itemView.findViewById(R.id.pizza_price);
+            price = itemView.findViewById(R.id.total);
             imageView =  itemView.findViewById(R.id.card_picture);
+
             itemView.setOnClickListener((View v)->{
                 if (getSelectedPizza()!= null)
                 {
