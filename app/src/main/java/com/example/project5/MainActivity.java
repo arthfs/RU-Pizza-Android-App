@@ -34,23 +34,25 @@ public class MainActivity extends AppCompatActivity {
     {
         Toast.makeText(context, message, Toast.LENGTH_LONG).show();
     }
+
     private void setUp()
     {
+        //here I setup the spinner (combo box) for the orders number
         Order order = new Order(0);
         currentOrders.add(order);
 
-       Spinner spinner =  findViewById(R.id.orderSpinner);
+        Spinner spinner =  findViewById(R.id.orderSpinner);
         ArrayList<CharSequence> currOrders = new ArrayList<>();
         for (Order tempOrder: currentOrders)
             currOrders.add(tempOrder.toString());
 
-       ArrayAdapter<CharSequence> spinnerAdapter = new ArrayAdapter<CharSequence>(this,
-               android.R.layout.simple_spinner_item,  currOrders);
+       ArrayAdapter<Order> spinnerAdapter = new ArrayAdapter<Order>(this,
+               android.R.layout.simple_spinner_item,  currentOrders);
 
        spinner.setAdapter(spinnerAdapter);
        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-
+       // I added a listener
        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() { //anonymous inner class
 
            /**
@@ -58,8 +60,13 @@ public class MainActivity extends AppCompatActivity {
             */
            @Override
            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-               selectedOrder = currentOrders.get(position);
-               display(parent.getContext(), selectedOrder.toString());
+               if (currentOrders.size() > 1) {
+                   //spinnerAdapter.
+                   Log.d("order", currentOrders.get(1).toString());
+               }
+                   selectedOrder = currentOrders.get(position);
+
+               //display(parent.getContext(), selectedOrder.toString());
            }
 
            @Override
@@ -68,18 +75,25 @@ public class MainActivity extends AppCompatActivity {
            }
        });
 
+        // I added a listener for the shopping cart button.
         View addOrderButton =  findViewById(R.id.addOrder);
         addOrderButton.setOnClickListener((view -> {
+
+            //each pizza view is associated to a Pizza object
             HashMap<View, Pizza> ref = ItemsAdapter.getViewPizza();
+
+            //get the pizza
             Pizza pizza = ref.get(ItemsAdapter.getSelectedPizza());
-            String message = pizza.toString();
+
+
+            //don't forget to check for exception
 
             // it's a new order
             if (selectedOrder.getNumber() == 0)
             {
                 Order newOrder = new Order(orderNumber++);
                 newOrder.getPizzas().add(pizza);
-                spinnerAdapter.add(newOrder.toString());
+                spinnerAdapter.add(newOrder);
                 display(this, "New order successfully added");
             }
 
@@ -89,8 +103,6 @@ public class MainActivity extends AppCompatActivity {
                 display(this, "Pizza successfully added to order " +
                         selectedOrder.toString());
             }
-            // Prints to Logcat with tag "MyTag"
-            Log.d("MyTag",Integer.toString(currentOrders.size()));
 
         }));
     }
@@ -110,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        // I'm adding all the types of pizzas
         ArrayList<Pizza> pizzas = new ArrayList<>();
 
         PizzaFactory chicagoFactory = new ChicagoPizza();
@@ -126,9 +139,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
+        // add all the pizzas to the adapter
         adapter = new ItemsAdapter(pizzas);
         recyclerView.setAdapter(adapter);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         setUp();
     }

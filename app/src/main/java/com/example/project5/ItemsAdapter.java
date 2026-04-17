@@ -51,11 +51,11 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsHolder>
     @NonNull
     @Override
     public ItemsAdapter.ItemsHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // setup the view for each card
        View view =  LayoutInflater.from(parent.getContext()).inflate(R.layout.view1_card, parent,
                 false);
-       view.setOnClickListener((View v)->{
-           v.setBackgroundColor(Color.BLUE);
-       });
+
+
         return new ItemsHolder(view);
     }
 
@@ -76,6 +76,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsHolder>
 
 
         String type = pizza.getClass().getSimpleName();
+        //select the appropriate picture
         if (pizza.getStyle().equals("Chicago-Style"))
         {
             holder.imageView.setImageResource( type.equals("BBQChicken") ?
@@ -117,7 +118,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsHolder>
             price = itemView.findViewById(R.id.pizza_price);
             imageView =  itemView.findViewById(R.id.card_picture);
             itemView.setOnClickListener((View v)->{
-                if (getSelectedPizza()!=null)
+                if (getSelectedPizza()!= null)
                 {
                     View view = getSelectedPizza();
                     view.setBackgroundColor(Color.WHITE);
@@ -127,7 +128,5 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsHolder>
             });
         }
     }
-
-
 
 }
