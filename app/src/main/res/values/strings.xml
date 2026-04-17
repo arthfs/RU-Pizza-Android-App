@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Project5</string>
+    <string name="price_label">Price</string>
+    <string name="description_addOrder_button">add pizza to an existing order or create a new one
+    </string>
+    <string name="pizza_description">this is the picture of this pizza</string>
+</resources>
