@@ -1,6 +1,7 @@
 package com.example.project5;
 
 import static com.example.project5.util.Methods.display;
+import static com.example.project5.util.Methods.priceFormat;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -26,11 +27,13 @@ import com.example.project5.pizza.ChicagoPizza;
 import com.example.project5.pizza.NYPizza;
 import com.example.project5.pizza.Order;
 import com.example.project5.pizza.Pizza;
+import com.example.project5.pizza.Size;
 import com.example.project5.pizza.Topping;
 
 import java.util.ArrayList;
 
 public class BuildYourOwnActivity extends AppCompatActivity {
+    private static final int NOT_SELECTED = -1;
     //must be taken from the singleton class
     ArrayList<Order> currentOrders = new ArrayList<>();
     Order currentOrder;
@@ -39,9 +42,22 @@ public class BuildYourOwnActivity extends AppCompatActivity {
     private void setUp()
     {
 
+        //add a listener for the size
+
+        RadioGroup sizeRadioBtnGroup = findViewById(R.id.size);
+        sizeRadioBtnGroup.setOnCheckedChangeListener((group, id)->{
+            RadioButton selected = findViewById(group.getCheckedRadioButtonId());
+            if (pizza != null)
+            {
+                pizza.setSize(Size.valueOf(selected.getText().toString().toUpperCase()));
+                TextView price = findViewById(R.id.pizzaPrice);
+                price.setText(String.format("$ %s", priceFormat.format(pizza.price())));
+            }
+        });
+
         // add a listener when the user changes the style
-        RadioGroup radioBtnGroup = findViewById(R.id.style);
-        radioBtnGroup.setOnCheckedChangeListener((group,id)->{
+        RadioGroup styleRadioBtnGroup = findViewById(R.id.style);
+        styleRadioBtnGroup.setOnCheckedChangeListener((group,id)->{
             RadioButton selected = findViewById(group.getCheckedRadioButtonId());
 
            pizza =  selected.getText().toString().equals("Chicago Style") ? new ChicagoPizza().
@@ -49,7 +65,14 @@ public class BuildYourOwnActivity extends AppCompatActivity {
 
            TextView crust = findViewById(R.id.crust);
            crust.setText(pizza.getCrust().toString());
-           //display(this, selected.getText().toString());
+
+           if ( sizeRadioBtnGroup.getCheckedRadioButtonId() != NOT_SELECTED)
+           {
+               TextView price = findViewById(R.id.pizzaPrice);
+               RadioButton selectedSize = findViewById(sizeRadioBtnGroup.getCheckedRadioButtonId());
+               pizza.setSize(Size.valueOf(selectedSize.getText().toString().toUpperCase()));
+               price.setText(String.format("$ %s", priceFormat.format(pizza.price())));
+           }
 
         });
 
@@ -104,9 +127,15 @@ public class BuildYourOwnActivity extends AppCompatActivity {
 
             v.setBackgroundColor( currentColor == Color.TRANSPARENT? Color.MAGENTA :
                     Color.TRANSPARENT);
+
+            //update the price
+            if ( sizeRadioBtnGroup.getCheckedRadioButtonId() != NOT_SELECTED &&
+                    styleRadioBtnGroup.getCheckedRadioButtonId()!= NOT_SELECTED)
+            {
+                TextView price = findViewById(R.id.pizzaPrice);
+                price.setText(String.format("$ %s", priceFormat.format(pizza.price())));
+            }
         });
-
-
 
     }
 
@@ -121,7 +150,8 @@ public class BuildYourOwnActivity extends AppCompatActivity {
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main),
                 (v, insets) -> {
                     Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-                    v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+                    v.setPadding(systemBars.left, systemBars.top, systemBars.right,
+                            systemBars.bottom);
                     return insets;
                 });
         setUp();

@@ -1,12 +1,13 @@
 package com.example.project5;
 
-import static com.example.project5.util.Methods.display;
+
+
+import static com.example.project5.util.Methods.priceFormat;
 
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.project5.pizza.Pizza;
 
 import java.text.DecimalFormat;
-import java.util.HashMap;
+
 import java.util.List;
 
 public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsHolder> {
@@ -57,7 +58,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsHolder>
     public void onBindViewHolder(@NonNull ItemsAdapter.ItemsHolder holder, int position) {
 
         //fill up the Card's information about the pizza
-        DecimalFormat priceFormat =  new DecimalFormat();
+
         priceFormat.applyPattern("#,###.00");
 
         Pizza pizza = pizzas.get(position);
