@@ -1,6 +1,9 @@
 package com.example.project5;
 
+import static com.example.project5.util.Methods.display;
+
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,6 +29,7 @@ import com.example.project5.pizza.Size;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
 public class MainActivity extends AppCompatActivity {
     private static int TYPES_OF_PIZZA = 3;
     private static int orderNumber = 1;
@@ -33,21 +37,15 @@ public class MainActivity extends AppCompatActivity {
     Order selectedOrder;
     ItemsAdapter pizzaAdapter;
 
-    private void display(Context context, String message)
-    {
-        Toast.makeText(context, message, Toast.LENGTH_LONG).show();
-    }
+
 
     private void setUp()
     {
-        //here I setup the spinner (combo box) for the orders number
+        //here I set up the spinner (combo box) for the orders number
         Order order = new Order(0);
         currentOrders.add(order);
 
         Spinner spinner =  findViewById(R.id.orderSpinner);
-        //ArrayList<CharSequence> currOrders = new ArrayList<>();
-       // for (Order tempOrder: currentOrders)
-        //    currOrders.add(tempOrder.toString());
 
        ArrayAdapter<Order> spinnerAdapter = new ArrayAdapter<Order>(this,
                android.R.layout.simple_spinner_item,  currentOrders);
@@ -63,12 +61,8 @@ public class MainActivity extends AppCompatActivity {
             */
            @Override
            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-               if (currentOrders.size() > 1) {
-                   //spinnerAdapter.
-                  // Log.d("order", currentOrders.get(1).toString());
-               }
 
-                   selectedOrder = currentOrders.get(position);
+                   selectedOrder = (Order) parent.getItemAtPosition(position);
 
                //display(parent.getContext(), selectedOrder.toString());
            }
@@ -83,11 +77,9 @@ public class MainActivity extends AppCompatActivity {
         View addOrderButton =  findViewById(R.id.addOrder);
         addOrderButton.setOnClickListener((view -> {
 
-            //each pizza view is associated to a Pizza object
-            HashMap<View, Pizza> ref = ItemsAdapter.getViewPizza();
 
             //get the pizza
-            Pizza pizza = ref.get(ItemsAdapter.getSelectedPizza());
+            Pizza pizza = ItemsAdapter.getSelectedPizza();
 
 
             //don't forget to check for exception
@@ -150,5 +142,12 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         setUp();
+
+        View buildYourOwnBtn = findViewById(R.id.buildYourOwnBtn);
+        buildYourOwnBtn.setOnClickListener((View) ->{
+            Intent intent = new Intent(this, BuildYourOwnActivity.class);
+            startActivity(intent);
+        });
+
     }
 }

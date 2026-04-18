@@ -21,7 +21,7 @@
         android:id="@+id/orderSpinner"
         android:layout_width="339dp"
         android:layout_height="52dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="44dp"
         app:layout_constraintStart_toStartOf="@+id/pizzaList"
         app:layout_constraintTop_toBottomOf="@+id/pizzaList" />
 
@@ -29,12 +29,23 @@
         android:id="@+id/addOrder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="128dp"
+        android:layout_marginEnd="8dp"
         android:clickable="true"
         android:contentDescription='@string/description_addOrder_button'
         android:foreground="@drawable/addorder"
         app:borderWidth="2dp"
         app:layout_constraintEnd_toEndOf="@+id/orderSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/orderSpinner" />
+
+    <Button
+        android:id="@+id/buildYourOwnBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="48dp"
+        android:text="Build your own"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/orderSpinner" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

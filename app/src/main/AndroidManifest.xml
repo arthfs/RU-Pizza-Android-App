@@ -13,7 +13,8 @@
         android:theme="@style/Theme.Project5">
         <activity
             android:name=".BuildYourOwnActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Project5" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

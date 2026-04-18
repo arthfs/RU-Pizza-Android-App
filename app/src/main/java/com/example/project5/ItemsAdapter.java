@@ -1,9 +1,12 @@
 package com.example.project5;
 
+import static com.example.project5.util.Methods.display;
+
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,19 +20,14 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsHolder> {
-    private List<Pizza> pizzas;
-     private static View selectedPizza;
-     private static HashMap<View, Pizza> viewPizza = new HashMap<>();
-
-    public static View getSelectedPizza() {
+     private List<Pizza> pizzas;
+     private static Pizza selectedPizza;
+     static View selectedView;
+    public static Pizza getSelectedPizza() {
         return selectedPizza;
     }
 
-    public static HashMap<View, Pizza> getViewPizza() {
-        return viewPizza;
-    }
-
-    public static void setSelectedPizza(View selected) {
+    public static void setSelectedPizza(Pizza selected) {
         selectedPizza = selected;
     }
 
@@ -86,8 +84,6 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsHolder>
                     R.drawable.new_york_style_deluxe: R.drawable.new_york_style_meatzza);
         }
 
-       viewPizza.put(holder.itemView, pizzas.get(position));
-
     }
 
     @Override
@@ -105,6 +101,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsHolder>
 
         ImageView imageView;
 
+
         public ItemsHolder(@NonNull View itemView) {
             super(itemView);
             sizeType = itemView.findViewById(R.id.size_type);
@@ -114,15 +111,24 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsHolder>
             price = itemView.findViewById(R.id.total);
             imageView =  itemView.findViewById(R.id.card_picture);
 
+
             itemView.setOnClickListener((View v)->{
-                if (getSelectedPizza()!= null)
-                {
-                    View view = getSelectedPizza();
-                    view.setBackgroundColor(Color.WHITE);
+                if (getBindingAdapter()!= null) {
+                    if (selectedView == null)
+                        selectedView = v;
+
+                    selectedView.setBackgroundColor(Color.WHITE);
+                    //position of the selected pizza
+
+                    int position = getBindingAdapterPosition();
+                    v.setBackgroundColor(Color.MAGENTA);
+
+                    selectedPizza = ((ItemsAdapter) getBindingAdapter()).pizzas.get(position);
                 }
-                v.setBackgroundColor(Color.MAGENTA);
-                setSelectedPizza(v);
+                selectedView = v;
             });
+
+
         }
     }
 
