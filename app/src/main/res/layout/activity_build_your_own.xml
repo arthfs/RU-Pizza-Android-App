@@ -11,86 +11,134 @@
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="72dp"
         android:clickable="true"
         android:contentDescription="@string/description_addOrder_button"
         android:src="@android:drawable/ic_input_add"
-        tools:layout_editor_absoluteX="280dp"
-        tools:layout_editor_absoluteY="643dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listView" />
 
     <TextView
         android:id="@+id/pizzaPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="88dp"
-        tools:layout_editor_absoluteY="635dp" />
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listView" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="44dp"
         android:text="@string/price_label"
         app:layout_constraintStart_toEndOf="@+id/pizzaPrice"
-        app:layout_constraintTop_toTopOf="@+id/pizzaPrice" />
-
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="165dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Spinner
-        android:id="@+id/style"
-        android:layout_width="163dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/listView" />
 
     <Spinner
         android:id="@+id/type"
-        android:layout_width="160dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="44dp"
-        app:layout_constraintEnd_toEndOf="@+id/style"
+        android:layout_width="158dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/style" />
 
     <TextView
         android:id="@+id/crust"
         android:layout_width="155dp"
         android:layout_height="46dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="@+id/type"
         app:layout_constraintTop_toBottomOf="@+id/type" />
 
     <Spinner
         android:id="@+id/orderNumber"
-        android:layout_width="151dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="155dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="28dp"
         app:layout_constraintEnd_toEndOf="@+id/crust"
         app:layout_constraintTop_toBottomOf="@+id/crust" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_width="106dp"
+        android:layout_height="117dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
     <ListView
+        android:id="@+id/listView"
         android:layout_width="357dp"
         android:layout_height="172dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="36dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/orderNumber" />
+
+    <RadioGroup
+        android:id="@+id/size"
+        android:layout_width="262dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:minWidth="20dp"
+            android:text="Small" />
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Medium" />
+
+        <RadioButton
+            android:id="@+id/radioButton4"
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Large" />
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/style"
+        android:layout_width="261dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/size">
+
+        <RadioButton
+            android:id="@+id/radioButton7"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="New-York Style" />
+
+        <RadioButton
+            android:id="@+id/radioButton8"
+            android:layout_width="wrap_content"
+            android:layout_height="49dp"
+            android:layout_weight="1"
+            android:text="Chicago Style" />
+    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
