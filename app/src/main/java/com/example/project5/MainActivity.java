@@ -1,9 +1,11 @@
 package com.example.project5;
 
 import static com.example.project5.util.Methods.display;
+import static com.example.project5.util.Methods.displayError;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -36,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Order> currentOrders = new ArrayList<>();
     Order selectedOrder;
     ItemsAdapter pizzaAdapter;
-
+    Spinner orderSpinner ;
 
 
     private void setUp()
@@ -45,16 +47,16 @@ public class MainActivity extends AppCompatActivity {
         Order order = new Order(0);
         currentOrders.add(order);
 
-        Spinner spinner =  findViewById(R.id.orderSpinner);
+        orderSpinner =  findViewById(R.id.orderSpinner);
 
        ArrayAdapter<Order> spinnerAdapter = new ArrayAdapter<Order>(this,
                android.R.layout.simple_spinner_item,  currentOrders);
 
-       spinner.setAdapter(spinnerAdapter);
+       orderSpinner.setAdapter(spinnerAdapter);
        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
        // I added a listener
-       spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() { //anonymous inner class
+       orderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() { //anonymous inner class
 
            /**
             * Event handler implemented in the anonymous inner class.
@@ -77,13 +79,20 @@ public class MainActivity extends AppCompatActivity {
         View addOrderButton =  findViewById(R.id.addOrder);
         addOrderButton.setOnClickListener((view -> {
 
-
             //get the pizza
-            Pizza pizza = ItemsAdapter.getSelectedPizza();
+            Pizza pizza = pizzaAdapter.getSelectedPizza();
 
+            if (pizza == null)
+            {
+                displayError(this,"You must select a pizza");
+                return;
+            }
 
-            //don't forget to check for exception
-
+            if (selectedOrder == null)
+            {
+                displayError(this,"You must select an order number");
+                return;
+            }
             // it's a new order
             if (selectedOrder.getNumber() == 0)
             {
@@ -99,8 +108,14 @@ public class MainActivity extends AppCompatActivity {
                 display(this, "Pizza successfully added to order " +
                         selectedOrder.toString());
             }
-
+            clear();
         }));
+    }
+
+    private void clear()
+    {
+        orderSpinner.setSelection(0);
+        pizzaAdapter.getSelectedView().setBackgroundColor(Color.TRANSPARENT);
     }
 
     @Override

@@ -22,13 +22,22 @@ import java.util.List;
 
 public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsHolder> {
      private List<Pizza> pizzas;
-     private static Pizza selectedPizza;
-     static View selectedView;
-    public static Pizza getSelectedPizza() {
+     private Pizza selectedPizza;
+     private View selectedView;
+
+    public View getSelectedView() {
+        return selectedView;
+    }
+
+    public void setSelectedView(View selectedView) {
+        this.selectedView = selectedView;
+    }
+
+    public  Pizza getSelectedPizza() {
         return selectedPizza;
     }
 
-    public static void setSelectedPizza(Pizza selected) {
+    public  void setSelectedPizza(Pizza selected) {
         selectedPizza = selected;
     }
 
@@ -46,7 +55,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsHolder>
     @NonNull
     @Override
     public ItemsAdapter.ItemsHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // setup the view for each card
+        // set up the view for each card
        View view =  LayoutInflater.from(parent.getContext()).inflate(R.layout.view1_card, parent,
                 false);
 
@@ -92,7 +101,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsHolder>
         return pizzas.size();
     }
 
-    public static class ItemsHolder extends RecyclerView.ViewHolder {
+    public class ItemsHolder extends RecyclerView.ViewHolder {
         TextView sizeType;
         TextView style;
         TextView crust;

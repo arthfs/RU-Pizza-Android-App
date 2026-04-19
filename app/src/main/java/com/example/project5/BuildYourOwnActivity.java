@@ -41,7 +41,7 @@ public class BuildYourOwnActivity extends AppCompatActivity {
     Pizza pizza;
     private void setUp()
     {
-
+        ListView toppings = findViewById(R.id.toppings);
         //add a listener for the size
 
         RadioGroup sizeRadioBtnGroup = findViewById(R.id.size);
@@ -49,6 +49,7 @@ public class BuildYourOwnActivity extends AppCompatActivity {
             RadioButton selected = findViewById(group.getCheckedRadioButtonId());
             if (pizza != null)
             {
+                toppings.setActivated(true);
                 pizza.setSize(Size.valueOf(selected.getText().toString().toUpperCase()));
                 TextView price = findViewById(R.id.pizzaPrice);
                 price.setText(String.format("$ %s", priceFormat.format(pizza.price())));
@@ -68,6 +69,7 @@ public class BuildYourOwnActivity extends AppCompatActivity {
 
            if ( sizeRadioBtnGroup.getCheckedRadioButtonId() != NOT_SELECTED)
            {
+               toppings.setActivated(true);
                TextView price = findViewById(R.id.pizzaPrice);
                RadioButton selectedSize = findViewById(sizeRadioBtnGroup.getCheckedRadioButtonId());
                pizza.setSize(Size.valueOf(selectedSize.getText().toString().toUpperCase()));
@@ -103,14 +105,16 @@ public class BuildYourOwnActivity extends AppCompatActivity {
         }));
 
         //set up the toppings
-        ListView toppings = findViewById(R.id.toppings);
+
 
         ArrayAdapter<Topping> toppingAdapter = new ArrayAdapter<>
                 (this, android.R.layout.simple_list_item_1, Topping.values());
         toppings.setAdapter(toppingAdapter);
-
+        toppings.setActivated(false);
         //add the listener
         toppings.setOnItemClickListener((parent,v,position,c)->{
+            if (!toppings.isActivated())
+                return;
 
             int currentColor;
             if (v.getBackground() == null)
@@ -129,12 +133,16 @@ public class BuildYourOwnActivity extends AppCompatActivity {
                     Color.TRANSPARENT);
 
             //update the price
-            if ( sizeRadioBtnGroup.getCheckedRadioButtonId() != NOT_SELECTED &&
-                    styleRadioBtnGroup.getCheckedRadioButtonId()!= NOT_SELECTED)
+            if (styleRadioBtnGroup.getCheckedRadioButtonId() == NOT_SELECTED ||
+                    sizeRadioBtnGroup.getCheckedRadioButtonId() == NOT_SELECTED)
             {
+                //use the alert dialog to say they must select a size and a style
+                return;
+            }
+
                 TextView price = findViewById(R.id.pizzaPrice);
                 price.setText(String.format("$ %s", priceFormat.format(pizza.price())));
-            }
+
         });
 
     }
