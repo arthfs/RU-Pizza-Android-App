@@ -7,4 +7,13 @@ package com.example.project5.pizza;
 public enum Topping {
     SAUSAGE, PEPPERONI, GREEN_PEPPER, ONION, MUSHROOM, BBQ_CHICKEN,
     PROVOLONE, CHEDDAR, BEEF, HAM, PARMESAN, BACON, PINEAPPLE;
+    private boolean isSelected = false;
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
 }

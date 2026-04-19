@@ -34,23 +34,22 @@ import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
     private static int TYPES_OF_PIZZA = 3;
-    private static int orderNumber = 1;
-    private ArrayList<Order> currentOrders = new ArrayList<>();
+   // private static int orderNumber = 1;
+
     Order selectedOrder;
     ItemsAdapter pizzaAdapter;
     Spinner orderSpinner ;
 
 
+
     private void setUp()
     {
         //here I set up the spinner (combo box) for the orders number
-        Order order = new Order(0);
-        currentOrders.add(order);
 
         orderSpinner =  findViewById(R.id.orderSpinner);
 
        ArrayAdapter<Order> spinnerAdapter = new ArrayAdapter<Order>(this,
-               android.R.layout.simple_spinner_item,  currentOrders);
+               android.R.layout.simple_spinner_item,  Restaurant.getInstance().getCurrentOrders());
 
        orderSpinner.setAdapter(spinnerAdapter);
        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -93,12 +92,15 @@ public class MainActivity extends AppCompatActivity {
                 displayError(this,"You must select an order number");
                 return;
             }
+
             // it's a new order
             if (selectedOrder.getNumber() == 0)
             {
-                Order newOrder = new Order(orderNumber++);
+                Order newOrder = new Order(Restaurant.orderNumber++);
                 newOrder.getPizzas().add(pizza);
-                spinnerAdapter.add(newOrder);
+                Restaurant.getInstance().getCurrentOrders().add(newOrder);
+                spinnerAdapter.notifyDataSetChanged();
+                //spinnerAdapter.add(newOrder);
                 display(this, "New order successfully added");
             }
 
@@ -162,6 +164,7 @@ public class MainActivity extends AppCompatActivity {
         buildYourOwnBtn.setOnClickListener((View) ->{
             Intent intent = new Intent(this, BuildYourOwnActivity.class);
             startActivity(intent);
+
         });
 
     }

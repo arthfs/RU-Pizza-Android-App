@@ -10,6 +10,7 @@ import java.util.ArrayList;
  * @author Marc-Arthur Saint Louis and Lamita Farroukh.
  */
 public abstract class Pizza {
+    public static final int MAX_TOPPING = 5;
     private ArrayList<Topping> toppings;
     private Crust crust;
     private Size size;

@@ -1,6 +1,7 @@
 package com.example.project5;
 
 import static com.example.project5.util.Methods.display;
+import static com.example.project5.util.Methods.displayError;
 import static com.example.project5.util.Methods.priceFormat;
 
 import android.graphics.Color;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -34,37 +36,53 @@ import java.util.ArrayList;
 
 public class BuildYourOwnActivity extends AppCompatActivity {
     private static final int NOT_SELECTED = -1;
-    //must be taken from the singleton class
-    ArrayList<Order> currentOrders = new ArrayList<>();
+
     Order currentOrder;
+    Topping[] availableToppings = Topping.values();
     Topping currentTopping;
     Pizza pizza;
+
+
+    RadioGroup sizeRadioBtnGroup;
+    RadioGroup styleRadioBtnGroup;
+    TextView crust;
+    Spinner orderSpinner;
+
+
+    ListView toppings;
+    ArrayAdapter<Topping> toppingAdapter;
+
+    TextView price;
+    Restaurant restaurant = Restaurant.getInstance();
+
+    ArrayList<View> selectedToppings;
     private void setUp()
     {
-        ListView toppings = findViewById(R.id.toppings);
+        selectedToppings = new ArrayList<>();
+        toppings = findViewById(R.id.toppings);
         //add a listener for the size
 
-        RadioGroup sizeRadioBtnGroup = findViewById(R.id.size);
+        sizeRadioBtnGroup = findViewById(R.id.size);
         sizeRadioBtnGroup.setOnCheckedChangeListener((group, id)->{
             RadioButton selected = findViewById(group.getCheckedRadioButtonId());
             if (pizza != null)
             {
                 toppings.setActivated(true);
                 pizza.setSize(Size.valueOf(selected.getText().toString().toUpperCase()));
-                TextView price = findViewById(R.id.pizzaPrice);
+                price = findViewById(R.id.pizzaPrice);
                 price.setText(String.format("$ %s", priceFormat.format(pizza.price())));
             }
         });
 
         // add a listener when the user changes the style
-        RadioGroup styleRadioBtnGroup = findViewById(R.id.style);
+        styleRadioBtnGroup = findViewById(R.id.style);
         styleRadioBtnGroup.setOnCheckedChangeListener((group,id)->{
             RadioButton selected = findViewById(group.getCheckedRadioButtonId());
 
            pizza =  selected.getText().toString().equals("Chicago Style") ? new ChicagoPizza().
                    createBuildYourOwn() : new NYPizza().createBuildYourOwn();
 
-           TextView crust = findViewById(R.id.crust);
+           crust = findViewById(R.id.crust);
            crust.setText(pizza.getCrust().toString());
 
            if ( sizeRadioBtnGroup.getCheckedRadioButtonId() != NOT_SELECTED)
@@ -79,15 +97,15 @@ public class BuildYourOwnActivity extends AppCompatActivity {
         });
 
         //just for testing
-        currentOrders.add(new Order(0));
-        currentOrders.add(new Order(1));
-        currentOrders.add(new Order(2));
+       // currentOrders.add(new Order(0));
+        //currentOrders.add(new Order(1));
+        //currentOrders.add(new Order(2));
 
         //set up the spinner for the orders
-        Spinner orderSpinner = findViewById(R.id.orderSpinner2);
+        orderSpinner = findViewById(R.id.orderSpinner2);
         ArrayAdapter<Order> orderAdapter =
                 new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
-                        currentOrders);
+                        restaurant.getCurrentOrders());
 
         orderSpinner.setAdapter(orderAdapter);
         orderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -107,48 +125,135 @@ public class BuildYourOwnActivity extends AppCompatActivity {
         //set up the toppings
 
 
-        ArrayAdapter<Topping> toppingAdapter = new ArrayAdapter<>
-                (this, android.R.layout.simple_list_item_1, Topping.values());
+        toppingAdapter = new ToppingAdapter(this, availableToppings);
+
         toppings.setAdapter(toppingAdapter);
         toppings.setActivated(false);
+
         //add the listener
         toppings.setOnItemClickListener((parent,v,position,c)->{
-            if (!toppings.isActivated())
-                return;
-
-            int currentColor;
-            if (v.getBackground() == null)
-                currentColor = Color.TRANSPARENT;
-            else
-                currentColor = ((ColorDrawable) v.getBackground()).getColor();
-
             Topping topping = (Topping) parent.getItemAtPosition(position);
-            if (currentColor == Color.TRANSPARENT)
+
+            if (!toppings.isActivated())
+            {
+                if (sizeRadioBtnGroup.getCheckedRadioButtonId() == NOT_SELECTED)
+                    displayError(this,
+                            "You must first select the size of the pizza");
+
+
+                else if (styleRadioBtnGroup.getCheckedRadioButtonId() == NOT_SELECTED)
+                    displayError(this,
+                            "You must also select the style of the pizza");
+
+                return;
+            }
+
+
+            //check for max topping
+            else if (!topping.isSelected() && pizza.getToppings().size() == Pizza.MAX_TOPPING) {
+                displayError(this,
+                        "You can only add up to 5 toppings");
+                return;
+            }
+
+
+
+
+
+            if (!topping.isSelected()) {
                 pizza.getToppings().add(topping);
+                v.setBackgroundColor(Color.MAGENTA);
+            }
 
             else
                 pizza.getToppings().remove(topping);
 
-            v.setBackgroundColor( currentColor == Color.TRANSPARENT? Color.MAGENTA :
-                    Color.TRANSPARENT);
+
+            topping.setSelected(!topping.isSelected());
+            toppingAdapter.notifyDataSetChanged();
 
             //update the price
             if (styleRadioBtnGroup.getCheckedRadioButtonId() == NOT_SELECTED ||
                     sizeRadioBtnGroup.getCheckedRadioButtonId() == NOT_SELECTED)
+                return;
+
+
+            TextView price = findViewById(R.id.pizzaPrice);
+            price.setText(String.format("$ %s", priceFormat.format(pizza.price())));
+
+        });
+
+
+        ImageButton addToOrder = findViewById(R.id.addOrder2);
+        addToOrder.setOnClickListener((view)->{
+            //check if everything was filled.
+            if (sizeRadioBtnGroup.getCheckedRadioButtonId() == NOT_SELECTED)
             {
-                //use the alert dialog to say they must select a size and a style
+                displayError(this, "You must select the size of the pizza");
                 return;
             }
 
-                TextView price = findViewById(R.id.pizzaPrice);
-                price.setText(String.format("$ %s", priceFormat.format(pizza.price())));
+            else if (styleRadioBtnGroup.getCheckedRadioButtonId() == NOT_SELECTED)
+            {
+                displayError(this, "You must select the style of the pizza");
+                return;
+            }
 
+            else if (currentOrder == null)
+            {
+                displayError(this, "You must select an order");
+                return;
+            }
+
+            // it's a new order
+            if (currentOrder.getNumber() == 0)
+            {
+                int currentOrderNumber = Restaurant.orderNumber++;
+                        // MainActivity.getOrderNumber();
+                Order newOrder = new Order(currentOrderNumber);
+
+
+                newOrder.getPizzas().add(pizza);
+                restaurant.getCurrentOrders().add(newOrder);
+                orderAdapter.notifyDataSetChanged();
+                //orderAdapter.add(newOrder);
+                display(this, "New order successfully added");
+            }
+
+            else //existing order
+            {
+                currentOrder.getPizzas().add(pizza);
+                display(this, "Pizza successfully added to order " +
+                        currentOrder.toString());
+            }
+            clear();
         });
 
     }
 
 
+    private void clear()
+    {
+           RadioButton size = findViewById(sizeRadioBtnGroup.getCheckedRadioButtonId());
+           size.setChecked(false);
 
+           RadioButton style = findViewById(styleRadioBtnGroup.getCheckedRadioButtonId());
+           style.setChecked(false);
+
+            crust.clearComposingText();
+            orderSpinner.setSelection(0);
+
+            //reset the background color of the selected toppings
+            price.clearComposingText();
+            for (int i = 0 ; i < availableToppings.length; i++)
+            {
+                Topping topping =  toppingAdapter.getItem(i);
+                if (topping!= null)
+                    topping.setSelected(false);
+            }
+            toppingAdapter.notifyDataSetChanged();
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
