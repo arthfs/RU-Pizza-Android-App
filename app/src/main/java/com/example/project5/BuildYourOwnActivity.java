@@ -5,13 +5,12 @@ import static com.example.project5.util.Methods.displayError;
 import static com.example.project5.util.Methods.priceFormat;
 
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
+
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -19,12 +18,11 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project5.pizza.ChicagoPizza;
 import com.example.project5.pizza.NYPizza;
@@ -82,7 +80,6 @@ public class BuildYourOwnActivity extends AppCompatActivity {
 
            pizza =  selected.getText().toString().equals("Chicago Style") ? new ChicagoPizza().
                    createBuildYourOwn() : new NYPizza().createBuildYourOwn();
-            Button a;
 
            crust = findViewById(R.id.crust);
            crust.setText(pizza.getCrust().toString());

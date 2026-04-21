@@ -3,11 +3,10 @@ package com.example.project5;
 import static com.example.project5.util.Methods.display;
 import static com.example.project5.util.Methods.displayError;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
+
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,7 +14,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,8 +30,6 @@ import com.example.project5.pizza.PizzaFactory;
 import com.example.project5.pizza.Size;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -52,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         orderSpinner =  findViewById(R.id.orderSpinner);
 
-       ArrayAdapter<Order> spinnerAdapter = new ArrayAdapter<Order>(this,
+       ArrayAdapter<Order> spinnerAdapter = new ArrayAdapter<>(this,
                android.R.layout.simple_spinner_item,  Restaurant.getInstance().getCurrentOrders());
 
        orderSpinner.setAdapter(spinnerAdapter);
