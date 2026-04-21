@@ -29,4 +29,12 @@ public final class Restaurant { //centralize control; cannot be extended
     public ArrayList<Order> getCurrentOrders () { //getter
         return currentOrders;
     }
+
+    public ArrayList<Order> getPlacedOrders() {
+        return placedOrders;
+    }
+
+    public void setPlacedOrders(ArrayList<Order> placedOrders) {
+        this.placedOrders = placedOrders;
+    }
 }
