@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Project5">
         <activity
+            android:name=".MainActivity3"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity2"
+            android:exported="false" />
+        <activity
             android:name=".BuildYourOwnActivity"
             android:exported="false"
             android:theme="@style/Theme.Project5" />

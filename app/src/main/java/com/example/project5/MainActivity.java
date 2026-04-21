@@ -8,6 +8,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -29,6 +32,7 @@ import com.example.project5.pizza.PizzaFactory;
 import com.example.project5.pizza.Size;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 
@@ -118,6 +122,48 @@ public class MainActivity extends AppCompatActivity {
     {
         orderSpinner.setSelection(0);
         pizzaAdapter.getSelectedView().setBackgroundColor(Color.TRANSPARENT);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent = new Intent(this, MainActivity.class);
+        String[] intentData = getIntent().toString().replace("}","").trim()
+                .split("project5/.");
+
+        String currentActivity = intentData[1];
+        if (item.getItemId() == R.id.option_1) {
+            if (!currentActivity.equals(MainActivity.class.getSimpleName())) {
+                startActivity(intent);
+                return true;
+            }
+        }
+
+        //replace with your own activity
+        else if (item.getItemId() == R.id.option_2) {
+            if (!currentActivity.equals(MainActivity2.class.getSimpleName())) {
+                intent = new Intent(this, MainActivity2.class);
+                startActivity(intent);
+                return true;
+            }
+        }
+
+        //replace with your own activity
+        else if (item.getItemId() == R.id.option_3) {
+            if (!currentActivity.equals(MainActivity3.class.getSimpleName())) {
+                intent = new Intent(this, MainActivity3.class);
+                startActivity(intent);
+                return true;
+            }
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

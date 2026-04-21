@@ -7,15 +7,16 @@
     android:layout_height="match_parent"
     tools:context=".BuildYourOwnActivity">
 
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addOrder2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="220dp"
-        android:layout_marginEnd="64dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="52dp"
         android:clickable="true"
         android:contentDescription="@string/description_addOrder_button"
-        android:src="@android:drawable/ic_input_add"
+        android:foreground="@drawable/addorder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toppings" />
 
@@ -42,8 +43,8 @@
         android:id="@+id/imageView"
         android:layout_width="120dp"
         android:layout_height="141dp"
-        android:layout_marginTop="196dp"
-        android:layout_marginEnd="52dp"
+        android:layout_marginTop="188dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/chicago_style_build_your_own"
@@ -127,8 +128,8 @@
 
     <ListView
         android:id="@+id/toppings"
-        android:layout_width="357dp"
-        android:layout_height="172dp"
+        android:layout_width="314dp"
+        android:layout_height="149dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         app:layout_constraintStart_toStartOf="parent"

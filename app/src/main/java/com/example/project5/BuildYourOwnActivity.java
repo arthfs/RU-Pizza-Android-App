@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -81,6 +82,7 @@ public class BuildYourOwnActivity extends AppCompatActivity {
 
            pizza =  selected.getText().toString().equals("Chicago Style") ? new ChicagoPizza().
                    createBuildYourOwn() : new NYPizza().createBuildYourOwn();
+            Button a;
 
            crust = findViewById(R.id.crust);
            crust.setText(pizza.getCrust().toString());

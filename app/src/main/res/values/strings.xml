@@ -4,12 +4,20 @@
     <string name="description_addOrder_button">add pizza to an existing order or create a new one
     </string>
     <string name="pizza_description">this is the picture of this pizza</string>
+    <string name="menuLabel">Menu</string>
 
     <string-array name="pizzaTypes">
         <item>Deluxe</item>
         <item>BBQChicken</item>
         <item>Meatzza</item>
     </string-array>
+
+    <string-array name="menuOptions">
+        <item>Order Pizza</item>
+        <item>Current orders</item>
+        <item>Placed orders</item>
+    </string-array>
+
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
