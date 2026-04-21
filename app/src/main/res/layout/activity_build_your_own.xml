@@ -92,7 +92,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:minWidth="20dp"
-            tools:text="small" />
+            android:text="@string/size_small" />
 
         <RadioButton
             android:id="@+id/radioButton3"

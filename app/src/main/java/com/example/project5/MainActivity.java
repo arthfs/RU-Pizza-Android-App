@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -55,7 +56,8 @@ public class MainActivity extends AppCompatActivity {
        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
        // I added a listener
-       orderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() { //anonymous inner class
+       orderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+           //anonymous inner class
 
            /**
             * Event handler implemented in the anonymous inner class.
@@ -208,6 +210,8 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
 
         });
+
+
 
     }
 }

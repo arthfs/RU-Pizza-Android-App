@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/placeorder"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -48,21 +49,23 @@
 
     <Button
         android:id="@+id/removeAll"
-        android:layout_width="155dp"
-        android:layout_height="53dp"
+        android:layout_width="111dp"
+        android:layout_height="42dp"
         android:layout_marginTop="144dp"
         android:layout_marginEnd="16dp"
         android:text="@string/remove_all"
+        android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerNums" />
 
     <Button
         android:id="@+id/placeOrder"
-        android:layout_width="156dp"
-        android:layout_height="53dp"
+        android:layout_width="121dp"
+        android:layout_height="40dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:text="@string/place_order"
+        android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/removeAll" />
 

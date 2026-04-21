@@ -4,9 +4,14 @@ import static com.example.project5.util.Methods.display;
 import static com.example.project5.util.Methods.displayError;
 import static com.example.project5.util.Methods.priceFormat;
 
+import android.content.Intent;
 import android.graphics.Color;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -55,6 +60,48 @@ public class BuildYourOwnActivity extends AppCompatActivity {
     Restaurant restaurant = Restaurant.getInstance();
 
     ArrayList<View> selectedToppings;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent = new Intent(this, MainActivity.class);
+        String[] intentData = getIntent().toString().replace("}","").trim()
+                .split("project5/.");
+
+        String currentActivity = intentData[1];
+        if (item.getItemId() == R.id.option_1) {
+            if (!currentActivity.equals(MainActivity.class.getSimpleName())) {
+                startActivity(intent);
+                return true;
+            }
+        }
+
+        //replace with your own activity
+        else if (item.getItemId() == R.id.option_2) {
+            if (!currentActivity.equals(MainActivity2.class.getSimpleName())) {
+                intent = new Intent(this, MainActivity2.class);
+                startActivity(intent);
+                return true;
+            }
+        }
+
+        //replace with your own activity
+        else if (item.getItemId() == R.id.option_3) {
+            if (!currentActivity.equals(MainActivity3.class.getSimpleName())) {
+                intent = new Intent(this, MainActivity3.class);
+                startActivity(intent);
+                return true;
+            }
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
     private void setUp()
     {
         selectedToppings = new ArrayList<>();
@@ -112,7 +159,9 @@ public class BuildYourOwnActivity extends AppCompatActivity {
         orderSpinner.setOnItemSelectedListener((new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int i, long l) {
+
                 currentOrder = (Order) parent.getItemAtPosition(i);
+
             }
 
             @Override
@@ -239,11 +288,12 @@ public class BuildYourOwnActivity extends AppCompatActivity {
            RadioButton style = findViewById(styleRadioBtnGroup.getCheckedRadioButtonId());
            style.setChecked(false);
 
-            crust.clearComposingText();
+
             orderSpinner.setSelection(0);
+            crust.setText("");
 
             //reset the background color of the selected toppings
-            price.clearComposingText();
+            price.setText("");
             for (int i = 0 ; i < availableToppings.length; i++)
             {
                 Topping topping =  toppingAdapter.getItem(i);
@@ -251,6 +301,8 @@ public class BuildYourOwnActivity extends AppCompatActivity {
                     topping.setSelected(false);
             }
             toppingAdapter.notifyDataSetChanged();
+
+
 
     }
 

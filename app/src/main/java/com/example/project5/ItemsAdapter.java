@@ -16,8 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project5.pizza.Pizza;
 
-import java.text.DecimalFormat;
-
 import java.util.List;
 
 public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsHolder> {
@@ -55,7 +53,8 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsHolder>
     @NonNull
     @Override
     public ItemsAdapter.ItemsHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // set up the view for each card
+        // set
+        // up the view for each card
        View view =  LayoutInflater.from(parent.getContext()).inflate(R.layout.view1_card, parent,
                 false);
 
@@ -86,6 +85,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsHolder>
             holder.imageView.setImageResource( type.equals("BBQChicken") ?
                     R.drawable.chicago_style_bbqchicken : type.equals("Deluxe") ?
                     R.drawable.chicago_style_deluxe: R.drawable.chicago_style_meatzza );
+            
         }
 
         else {
@@ -120,7 +120,6 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsHolder>
             toppings = itemView.findViewById(R.id.pizza_toppings);
             price = itemView.findViewById(R.id.total);
             imageView =  itemView.findViewById(R.id.card_picture);
-
 
             itemView.setOnClickListener((View v)->{
                 if (getBindingAdapter()!= null) {

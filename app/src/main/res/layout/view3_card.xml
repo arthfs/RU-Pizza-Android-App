@@ -24,12 +24,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="115dp"
                 android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:textAlignment="center">
+                android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="234dp"
-                    android:layout_height="105dp"
+                    android:layout_width="183dp"
+                    android:layout_height="101dp"
                     android:orientation="vertical"
                     android:weightSum="20">
 
@@ -70,7 +69,8 @@
                         android:id="@+id/cancelOrder3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/remove" />
+                        android:text="@string/remove"
+                        android:textSize="11sp" />
                 </LinearLayout>
 
             </LinearLayout>
