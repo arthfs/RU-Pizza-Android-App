@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
             // it's a new order
             if (selectedOrder.getNumber() == 0)
             {
-                Order newOrder = new Order(Restaurant.orderNumber++);
+                Order newOrder = new Order(Order.orderNumber++);
                 newOrder.getPizzas().add(pizza);
                 Restaurant.getInstance().getCurrentOrders().add(newOrder);
                 spinnerAdapter.notifyDataSetChanged();

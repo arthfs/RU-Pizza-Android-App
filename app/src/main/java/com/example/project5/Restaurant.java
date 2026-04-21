@@ -5,7 +5,6 @@ import com.example.project5.pizza.Order;
 import java.util.ArrayList;
 
 public final class Restaurant { //centralize control; cannot be extended
-    public static int orderNumber = 1;
     private static Restaurant restaurant; //the single instance
     private ArrayList<Order> currentOrders;
     private ArrayList<Order> placedOrders;

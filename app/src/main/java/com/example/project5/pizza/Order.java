@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * @author Marc-Arthur Saint Louis and Lamita Farroukh.
  */
 public class Order {
-
+    public static int orderNumber = 1;
     private int number;
     private ArrayList<Pizza> pizzas;
 

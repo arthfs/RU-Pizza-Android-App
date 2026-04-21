@@ -210,7 +210,7 @@ public class BuildYourOwnActivity extends AppCompatActivity {
             // it's a new order
             if (currentOrder.getNumber() == 0)
             {
-                int currentOrderNumber = Restaurant.orderNumber++;
+                int currentOrderNumber = Order.orderNumber++;
                         // MainActivity.getOrderNumber();
                 Order newOrder = new Order(currentOrderNumber);
 
