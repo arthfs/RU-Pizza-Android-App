@@ -54,7 +54,7 @@
                     <TextView
                         android:id="@+id/pizza_toppings3"
                         android:layout_width="match_parent"
-                        android:layout_height="49dp"
+                        android:layout_height="47dp"
                         android:text="TextView"
                         android:textAlignment="viewStart" />
                 </LinearLayout>
@@ -70,7 +70,7 @@
                         android:id="@+id/cancelOrder3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Remove" />
+                        android:text="@string/remove" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -85,10 +85,9 @@
 
                 <TextView
                     android:id="@+id/total3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
                     android:layoutDirection="inherit"
-                    android:paddingRight="60dp"
                     android:text="TextView" />
             </LinearLayout>
 

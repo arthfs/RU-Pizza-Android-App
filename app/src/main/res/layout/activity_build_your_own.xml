@@ -45,6 +45,7 @@
         android:layout_height="141dp"
         android:layout_marginTop="188dp"
         android:layout_marginEnd="16dp"
+        android:contentDescription="@string/pizza_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/chicago_style_build_your_own"
@@ -65,14 +66,14 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="New-York Style" />
+            android:text="@string/newyork_style" />
 
         <RadioButton
             android:id="@+id/radioButton8"
             android:layout_width="wrap_content"
             android:layout_height="49dp"
             android:layout_weight="1"
-            android:text="Chicago Style" />
+            android:text="@string/chicago_style" />
     </RadioGroup>
 
     <RadioGroup
@@ -91,21 +92,21 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:minWidth="20dp"
-            android:text="Small" />
+            tools:text="small" />
 
         <RadioButton
             android:id="@+id/radioButton3"
             android:layout_width="20dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Medium" />
+            android:text="@string/size_medium" />
 
         <RadioButton
             android:id="@+id/radioButton4"
             android:layout_width="20dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Large" />
+            android:text="@string/size_large" />
 
     </RadioGroup>
 

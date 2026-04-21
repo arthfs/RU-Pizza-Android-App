@@ -38,7 +38,7 @@
     <LinearLayout
         android:layout_width="292dp"
         android:layout_height="48dp"
-        android:layout_marginStart="44dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,14 +49,13 @@
             android:layout_width="119dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Order Total $ (including tax)" />
+            android:text="@string/total3" />
 
         <TextView
             android:id="@+id/totalPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="TextView" />
+            android:layout_weight="1" />
     </LinearLayout>
 
     <Button

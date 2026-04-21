@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Project5</string>
+    <string name="app_name">RUPizza</string>
     <string name="price_label">Price</string>
     <string name="description_addOrder_button">add pizza to an existing order or create a new one
     </string>
@@ -60,4 +60,18 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="size_medium">Medium</string>
+    <string name="size_large">Large</string>
+    <string name="chicago_style">Chicago Style</string>
+    <string name="newyork_style">New-York Style</string>
+    <string name="build_your_own">Build your own</string>
+    <string name="cancel">Cancel</string>
+    <string name="remove">Remove</string>
+    <string name="title2">Customer\'s Order</string>
+    <string name="tax2">Tax $</string>
+    <string name="place_order">Place order</string>
+    <string name="total2">Total $</string>
+    <string name="remove_all">Remove All</string>
+    <string name="order_number">Order Number:</string>
+    <string name="total3">Order Total $ (including tax)</string>
 </resources>

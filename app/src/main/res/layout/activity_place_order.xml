@@ -7,11 +7,11 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="390dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="20dp"
+        android:layout_width="383dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Customer's Order"
+        android:text="@string/title2"
         android:textAlignment="center"
         android:textSize="34sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +33,7 @@
         android:layout_height="17dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="52dp"
-        android:text="Order Number:"
+        android:text="@string/order_number"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -52,7 +52,7 @@
         android:layout_height="53dp"
         android:layout_marginTop="144dp"
         android:layout_marginEnd="16dp"
-        android:text="Remove All"
+        android:text="@string/remove_all"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerNums" />
 
@@ -62,7 +62,7 @@
         android:layout_height="53dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
-        android:text="Place order"
+        android:text="@string/place_order"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/removeAll" />
 
@@ -90,27 +90,25 @@
                 android:id="@+id/subTotal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TextView" />
+                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="225dp"
-            android:layout_height="43dp"
+            android:layout_width="224dp"
+            android:layout_height="38dp"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Tax $" />
+                android:text="@string/tax2" />
 
             <TextView
                 android:id="@+id/tax"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TextView" />
+                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout
@@ -123,14 +121,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Total $" />
+                android:text="@string/total2" />
 
             <TextView
                 android:id="@+id/total"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TextView" />
+                android:layout_weight="1" />
         </LinearLayout>
 
     </LinearLayout>
