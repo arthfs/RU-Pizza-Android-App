@@ -22,8 +22,8 @@
         android:id="@+id/spinnerNums"
         android:layout_width="226dp"
         android:layout_height="48dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="20dp"
         android:autofillHints="ui"
         app:layout_constraintStart_toEndOf="@+id/ordernum"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -32,42 +32,42 @@
         android:id="@+id/ordernum"
         android:layout_width="113dp"
         android:layout_height="17dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="36dp"
         android:text="@string/order_number"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="186dp"
-        android:layout_height="368dp"
+        android:layout_width="325dp"
+        android:layout_height="359dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="132dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerNums" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
         android:id="@+id/removeAll"
-        android:layout_width="111dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="144dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="122dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="60dp"
         android:text="@string/remove_all"
-        android:textSize="10sp"
+        android:textSize="11sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerNums" />
 
     <Button
         android:id="@+id/placeOrder"
-        android:layout_width="121dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="122dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="20dp"
         android:text="@string/place_order"
-        android:textSize="10sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/removeAll" />
+        android:textSize="11sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ordernum" />
 
     <LinearLayout
         android:layout_width="358dp"
