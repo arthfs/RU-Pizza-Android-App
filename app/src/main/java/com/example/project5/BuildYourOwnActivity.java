@@ -77,10 +77,12 @@ public class BuildYourOwnActivity extends AppCompatActivity {
     private void clear()
     {
         RadioButton size = findViewById(sizeRadioBtnGroup.getCheckedRadioButtonId());
-        size.setChecked(false);
+
+        sizeRadioBtnGroup.check(-1);
 
         RadioButton style = findViewById(styleRadioBtnGroup.getCheckedRadioButtonId());
-        style.setChecked(false);
+
+        styleRadioBtnGroup.check(-1);
 
         orderSpinner.setSelection(0);
         crust.setText("");
@@ -93,6 +95,8 @@ public class BuildYourOwnActivity extends AppCompatActivity {
             if (topping!= null)
                 topping.setSelected(false);
         }
+        pizza = null;
+        toppings.setActivated(false);
         toppingAdapter.notifyDataSetChanged();
     }
 
@@ -163,6 +167,8 @@ public class BuildYourOwnActivity extends AppCompatActivity {
     private void setUpToppingListener() {
         toppings.setOnItemClickListener((parent,v,position,c)->{
             Topping topping = (Topping) parent.getItemAtPosition(position);
+           // if ()
+
             if (!toppings.isActivated()) {
                 if (sizeRadioBtnGroup.getCheckedRadioButtonId() == NOT_SELECTED)
                     displayError(this,
@@ -209,6 +215,8 @@ public class BuildYourOwnActivity extends AppCompatActivity {
             styleRadioBtnGroup = findViewById(R.id.style);
             styleRadioBtnGroup.setOnCheckedChangeListener((group,id)->{
             RadioButton selected = findViewById(group.getCheckedRadioButtonId());
+            if (selected == null)
+                return ;
 
             pizza =  selected.getText().toString().equals("Chicago Style") ? new ChicagoPizza().
                     createBuildYourOwn() : new NYPizza().createBuildYourOwn();
@@ -224,6 +232,7 @@ public class BuildYourOwnActivity extends AppCompatActivity {
                         getCheckedRadioButtonId());
                 pizza.setSize(Size.valueOf(selectedSize.getText().toString().toUpperCase()));
                 price.setText(String.format("$ %s", priceFormat.format(pizza.price())));
+               // styleRadioBtnGroup.notify();
             }
 
         });
@@ -270,7 +279,11 @@ public class BuildYourOwnActivity extends AppCompatActivity {
         toppings = findViewById(R.id.toppings);
         sizeRadioBtnGroup = findViewById(R.id.size);
         sizeRadioBtnGroup.setOnCheckedChangeListener((group, id)->{
+
             RadioButton selected = findViewById(group.getCheckedRadioButtonId());
+            if (selected == null)
+                return ;
+
             if (pizza != null) {
                 toppings.setActivated(true);
                 pizza.setSize(Size.valueOf(selected.getText().toString().toUpperCase()));
