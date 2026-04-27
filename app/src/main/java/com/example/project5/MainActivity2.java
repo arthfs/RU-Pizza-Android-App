@@ -24,7 +24,7 @@ import com.example.project5.pizza.Pizza;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
+
 
 
 /**
@@ -72,8 +72,8 @@ public class MainActivity2 extends AppCompatActivity {
     /**
      * This method lets the recycle view adapter display the pizzas of the current order.
      */
-    private void editAdapter(ArrayList<Pizza> listOfpizzas) {
-        rvAdapter = new PizzasAdapter(listOfpizzas, selectedOrder);
+    private void editAdapter(ArrayList<Pizza> listOfPizzas) {
+        rvAdapter = new PizzasAdapter(listOfPizzas, selectedOrder);
         pizzasRV.setAdapter(rvAdapter);
         pizzasRV.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -158,7 +158,6 @@ public class MainActivity2 extends AppCompatActivity {
      */
     private void removingAllPizza() {
         removeAllButton.setOnClickListener((view -> {
-            HashMap<View, Pizza> adapterHashMap = PizzasAdapter.getPizzaHmap();
 
             if(selectedOrder != null) {
                 if(selectedOrder.getPizzas().isEmpty() == false) {
@@ -193,8 +192,6 @@ public class MainActivity2 extends AppCompatActivity {
      */
     private void placingAnOrder() {
         placeOrderButton.setOnClickListener((view -> {
-            HashMap<View, Pizza> adapterHashMap = PizzasAdapter.getPizzaHmap();
-
             if(selectedOrder != null) {
                 if(selectedOrder.getPizzas().isEmpty() == false) {
                     Restaurant.getInstance().getPlacedOrders().add(selectedOrder);
@@ -294,7 +291,6 @@ public class MainActivity2 extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
                 selectedOrder = null;
                 getFinaltotal();
-                return;
             }
 
         } );

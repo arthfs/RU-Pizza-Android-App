@@ -31,15 +31,12 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.HolderOfOr
 
     /**
      * This is the constructor of the adapter.
-     *
      * @param allPizzas is the list of pizzas in a specific order.
      * @param gottenOrder is the order we are currently handling.
      */
     public OrdersAdapter(ArrayList<Pizza> allPizzas, Order gottenOrder) {
         this.pizzasInOrder = allPizzas;
         this.currOrder = gottenOrder;
-
-
     }
 
     /**
@@ -91,7 +88,8 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.HolderOfOr
      */
     @NonNull
     @Override
-    public OrdersAdapter.HolderOfOrders onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public OrdersAdapter.HolderOfOrders onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+    {
         View cView = LayoutInflater.from(parent.getContext()).inflate(R.layout.view4_card, parent,
                 false);
 
@@ -137,6 +135,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.HolderOfOr
 
     /**
      * This class represents a view holder of a pizza card view.
+     * @author Marc-Arthur Saint Louis and Lamita Farroukh.
      */
     public class HolderOfOrders extends RecyclerView.ViewHolder {
         TextView sizeType;

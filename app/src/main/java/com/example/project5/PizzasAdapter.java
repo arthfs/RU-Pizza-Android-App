@@ -44,8 +44,6 @@ public class PizzasAdapter extends RecyclerView.Adapter<PizzasAdapter.HolderOfPi
     public PizzasAdapter(ArrayList<Pizza> allPizzas, Order gottenOrder) {
         this.pizzasInOrder = allPizzas;
         this.currOrder = gottenOrder;
-
-
     }
 
     /**
@@ -157,23 +155,7 @@ public class PizzasAdapter extends RecyclerView.Adapter<PizzasAdapter.HolderOfPi
         TextView tax;
         Button cancelbtn;
 
-        /**
-         * This method is the constructor for HolderOfPizzas.
-         * @param itemView represents the pizza card view.
-         */
-        public HolderOfPizzas(@NonNull View itemView) {
-            super(itemView);
-            sizeType = itemView.findViewById(R.id.size_type3);
-            style = itemView.findViewById(R.id.pizza_style3);
-            crust = itemView.findViewById(R.id.pizza_crust3);
-            removePizzaButton = itemView.findViewById(R.id.cancelOrder3);
 
-            toppings = itemView.findViewById(R.id.pizza_toppings3);
-            price = itemView.findViewById(R.id.total3);
-            cancelbtn = itemView.findViewById(R.id.cancelOrder3);
-            removingAPizza();
-
-        }
 
         /**
          * This method makes the necessary updates when the remove button for a pizza is clicked.
@@ -380,6 +362,23 @@ public class PizzasAdapter extends RecyclerView.Adapter<PizzasAdapter.HolderOfPi
 
         }
 
+        /**
+         * This method is the constructor for HolderOfPizzas.
+         * @param itemView represents the pizza card view.
+         */
+        public HolderOfPizzas(@NonNull View itemView) {
+            super(itemView);
+            sizeType = itemView.findViewById(R.id.size_type3);
+            style = itemView.findViewById(R.id.pizza_style3);
+            crust = itemView.findViewById(R.id.pizza_crust3);
+            removePizzaButton = itemView.findViewById(R.id.cancelOrder3);
+
+            toppings = itemView.findViewById(R.id.pizza_toppings3);
+            price = itemView.findViewById(R.id.total3);
+            cancelbtn = itemView.findViewById(R.id.cancelOrder3);
+            removingAPizza();
+
+        }
 
     }
 

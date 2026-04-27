@@ -72,7 +72,7 @@ public class BuildYourOwnActivity extends AppCompatActivity {
     }
 
     /**
-     * Method used to set everything to their initial state (listView, spinner, textView...etc).
+     * Method used to set everything to their initial state (listView, spinner, textView...etc.).
      */
     private void clear()
     {

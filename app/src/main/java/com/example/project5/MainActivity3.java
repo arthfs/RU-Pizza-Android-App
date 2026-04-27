@@ -209,12 +209,8 @@ public class MainActivity3 extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
                 selectedOrder = null;
                 findTotal();
-                return;
             }
-
         } );
-
-
     }
 
 
