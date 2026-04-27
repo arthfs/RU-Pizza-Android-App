@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/placeorder"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".MainActivity2">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="383dp"
         android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="80dp"
         android:text="@string/title2"
         android:textAlignment="center"
         android:textSize="34sp"
@@ -20,7 +21,7 @@
 
     <Spinner
         android:id="@+id/spinnerNums"
-        android:layout_width="226dp"
+        android:layout_width="222dp"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="20dp"
@@ -32,7 +33,7 @@
         android:id="@+id/ordernum"
         android:layout_width="113dp"
         android:layout_height="17dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="36dp"
         android:layout_marginTop="36dp"
         android:text="@string/order_number"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,8 +41,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="325dp"
-        android:layout_height="359dp"
+        android:layout_width="330dp"
+        android:layout_height="441dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="132dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,10 +71,10 @@
         app:layout_constraintTop_toBottomOf="@+id/ordernum" />
 
     <LinearLayout
-        android:layout_width="358dp"
-        android:layout_height="128dp"
+        android:layout_width="349dp"
+        android:layout_height="127dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="11dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerView">
@@ -87,7 +88,7 @@
                 android:id="@+id/textView11"
                 android:layout_width="101dp"
                 android:layout_height="wrap_content"
-                android:text="Subtotal $" />
+                android:text="@string/subtotal2" />
 
             <TextView
                 android:id="@+id/subTotal"
@@ -97,8 +98,8 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="224dp"
-            android:layout_height="38dp"
+            android:layout_width="225dp"
+            android:layout_height="35dp"
             android:orientation="horizontal">
 
             <TextView

@@ -73,6 +73,11 @@
     <string name="total2">Total $</string>
     <string name="remove_all">Remove All</string>
     <string name="order_number">Order Number:</string>
-    <string name="total3">Order Total $ (including tax)</string>
+    <string name="total3">Order Total (including tax) $ </string>
     <string name="size_small">Small</string>
+    <string name="view1title">Add pizza to order</string>
+    <string name="subtotal2">Subtotal $</string>
+    <string name="title3">Restaurant Orders</string>
+    <string name="cancelbtn">Cancel</string>
+    <string name="ordernumber">Order Number:</string>
 </resources>

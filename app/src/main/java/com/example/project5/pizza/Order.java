@@ -46,6 +46,19 @@ public class Order {
     }
 
     /**
+     * This method gets the subtotal of an order.
+     * @return the total price of this order (excluding tax)
+     */
+    public double getSubTotal()
+    {
+        double subtotal = 0;
+        for (int j = 0; j < pizzas.size(); j++)
+            subtotal = subtotal + pizzas.get(j).price();
+
+        return subtotal;
+    }
+
+    /**
      * This method gets the pizzas of an order
      * @return an arraylist containing all pizzas of an order.
      */
