@@ -24,33 +24,6 @@ public final class Restaurant { //centralize control; cannot be extended
         currentOrders = new ArrayList<>();
         placedOrders = new ArrayList<>();
 
-
-        //just for quick testing
-        Order order4 = new Order(4);
-        Pizza pizza4 = new ChicagoPizza().createMeatzza();
-        pizza4.setSize(Size.MEDIUM);
-        order4.getPizzas().add(pizza4);
-        placedOrders.add(order4);
-
-        Pizza pizza = new ChicagoPizza().createDeluxe();
-        pizza.setSize(Size.SMALL);
-        Order order1 = new Order(2);
-        order1.getPizzas().add(pizza);
-
-        Order order2 = new Order(3);
-        Pizza pizza2 = new ChicagoPizza().createBBQChicken();
-        pizza2.getToppings().add(Topping.PINEAPPLE);
-        pizza2.setSize(Size.LARGE);
-        order2.getPizzas().add(pizza2);
-        order1.getPizzas().add(pizza);
-        order1.getPizzas().add(pizza4);
-
-        currentOrders.add(order1);
-        currentOrders.add(order2);
-        placedOrders.add(order1);
-        placedOrders.add(order2);
-
-
     }
 
     /**

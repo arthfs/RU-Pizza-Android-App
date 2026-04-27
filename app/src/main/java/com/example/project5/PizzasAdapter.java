@@ -186,16 +186,16 @@ public class PizzasAdapter extends RecyclerView.Adapter<PizzasAdapter.HolderOfPi
                 Spinner spinner = itemView.getRootView().findViewById(R.id.spinnerNums);
                 if (currOrder.getPizzas().isEmpty())
                 {
-
+                    int last = Restaurant.getInstance().getCurrentOrders().size() - 1;
                     boolean wasLast = Restaurant.getInstance().getCurrentOrders().
-                            getLast().getNumber() == currOrder.getNumber();
+                            get(last).getNumber() == currOrder.getNumber();
                     Restaurant.getInstance().getCurrentOrders().remove(currOrder);
                     ArrayAdapter<Order> adapter = (ArrayAdapter<Order>)  spinner.getAdapter();
                     adapter.notifyDataSetChanged();
                     Order selected;
 
                     if (wasLast && ! Restaurant.getInstance().getCurrentOrders().isEmpty()) {
-                        selected = Restaurant.getInstance().getCurrentOrders().getFirst();
+                        selected = Restaurant.getInstance().getCurrentOrders().get(0);
                         currOrder = selected;
                     }
 
@@ -215,6 +215,7 @@ public class PizzasAdapter extends RecyclerView.Adapter<PizzasAdapter.HolderOfPi
                     getFinaltotal();
                 }
 
+                getFinaltotal();
                 notifyDataSetChanged();
             }));
         }
