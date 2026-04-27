@@ -80,4 +80,7 @@
     <string name="title3">Restaurant Orders</string>
     <string name="cancelbtn">Cancel</string>
     <string name="ordernumber">Order Number:</string>
+    <string name="menu_option1">Order pizza</string>
+    <string name="menu_option2">Current orders</string>
+    <string name="menu_option3">Placed orders</string>
 </resources>
