@@ -47,6 +47,22 @@ public class PizzasAdapter extends RecyclerView.Adapter<PizzasAdapter.HolderOfPi
     }
 
     /**
+     * This method gets the current order.
+     * @return currOrder
+     */
+    public Order getCurrOrder() {
+        return currOrder;
+    }
+
+    /**
+     * This method sets the current order.
+     * @param currOrder the new value of the current order.
+     */
+    public void setCurrOrder(Order currOrder) {
+        this.currOrder = currOrder;
+    }
+
+    /**
      * This method gives a hashmap representing the pizzas card layouts.
      * @return a hash map where each card view represents one pizza.
      */

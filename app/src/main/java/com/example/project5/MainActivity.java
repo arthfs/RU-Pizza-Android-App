@@ -154,8 +154,10 @@ public class MainActivity extends AppCompatActivity {
      */
     private void clear()
     {
+        pizzaAdapter.setSelectedPizza(null);
         orderSpinner.setSelection(0);
         pizzaAdapter.getSelectedView().setBackgroundColor(Color.TRANSPARENT);
+
     }
 
     /**

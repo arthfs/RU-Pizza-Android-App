@@ -5,6 +5,7 @@ import static com.example.project5.util.Methods.displayError;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -159,13 +160,19 @@ public class MainActivity2 extends AppCompatActivity {
     private void removingAllPizza() {
         removeAllButton.setOnClickListener((view -> {
 
-            if(selectedOrder != null) {
-                if(selectedOrder.getPizzas().isEmpty() == false) {
-                    selectedOrder.getPizzas().clear();
-                    Restaurant.getInstance().getCurrentOrders().remove(selectedOrder);
-                    editAdapter(selectedOrder.getPizzas());
+            if (rvAdapter == null) {
+                displayError(this,"No Order found to be placed.");
+                return;
+            }
+
+            if(rvAdapter.getCurrOrder() != null) {
+                if(rvAdapter.getCurrOrder().getPizzas().isEmpty() == false) {
+                    rvAdapter.getCurrOrder().getPizzas().clear();
+                    Restaurant.getInstance().getCurrentOrders().remove(rvAdapter.getCurrOrder());
+                    editAdapter(rvAdapter.getCurrOrder().getPizzas());
                     settingUpSpinner();
                     selectedOrder = null;
+                    rvAdapter.setCurrOrder(null);
                     currPizza = null;
                     display(this,"Order was successfully removed. ");
 
@@ -192,16 +199,22 @@ public class MainActivity2 extends AppCompatActivity {
      */
     private void placingAnOrder() {
         placeOrderButton.setOnClickListener((view -> {
-            if(selectedOrder != null) {
-                if(selectedOrder.getPizzas().isEmpty() == false) {
-                    Restaurant.getInstance().getPlacedOrders().add(selectedOrder);
-                    Restaurant.getInstance().getCurrentOrders().remove(selectedOrder);
+            if (rvAdapter == null) {
+                displayError(this,"No Order found to be placed.");
+                return;
+            }
+
+            if(rvAdapter.getCurrOrder() != null) {
+                if(rvAdapter.getCurrOrder().getPizzas().isEmpty() == false) {
+                    Restaurant.getInstance().getPlacedOrders().add(rvAdapter.getCurrOrder());
+                    Restaurant.getInstance().getCurrentOrders().remove(rvAdapter.getCurrOrder());
                     settingUpSpinner();
-                    ArrayList<Pizza> listCopyPizzas = (ArrayList<Pizza>) selectedOrder
+                    ArrayList<Pizza> listCopyPizzas = (ArrayList<Pizza>) rvAdapter.getCurrOrder()
                             .getPizzas().clone();
                     listCopyPizzas.clear();
                     editAdapter(listCopyPizzas);
                     selectedOrder = null;
+                    rvAdapter.setCurrOrder(null);
                     currPizza = null;
                     display(this,"Order was successfully placed. ");
                     getFinaltotal();

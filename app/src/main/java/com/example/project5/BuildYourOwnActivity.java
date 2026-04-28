@@ -331,6 +331,7 @@ public class BuildYourOwnActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.option_1) {
             if (!currentActivity.equals(MainActivity.class.getSimpleName())) {
                 startActivity(intent);
+                clear();
                 return true;
             }
         }
@@ -339,6 +340,7 @@ public class BuildYourOwnActivity extends AppCompatActivity {
         else if (item.getItemId() == R.id.option_2) {
             if (!currentActivity.equals(MainActivity2.class.getSimpleName())) {
                 intent = new Intent(this, MainActivity2.class);
+                clear();
                 startActivity(intent);
                 return true;
             }
@@ -348,10 +350,12 @@ public class BuildYourOwnActivity extends AppCompatActivity {
         else if (item.getItemId() == R.id.option_3) {
             if (!currentActivity.equals(MainActivity3.class.getSimpleName())) {
                 intent = new Intent(this, MainActivity3.class);
+                clear();
                 startActivity(intent);
                 return true;
             }
         }
+
         return super.onOptionsItemSelected(item);
     }
 
