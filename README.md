@@ -1,6 +1,3 @@
-
-#### For `Project5` (Android App)
-```markdown
 # Project 5: RU Pizza Android App
 
 ## Description
