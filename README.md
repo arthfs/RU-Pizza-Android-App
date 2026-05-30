@@ -3,8 +3,8 @@
 ## Description
 An Android mobile application version of Project 4 (excluding order export).
 
-**Features:**
-- **Components:** Uses `RecyclerView`, `Spinner`, `AlertDialog`, `Toast`.
+## Features
+- **Components:** Uses RecyclerView, Spinner, AlertDialog, Toast.
 - **Singleton Pattern:** Shares order data across Activities.
 - **Screens:** Minimum 3 Activities for pizza selection, customization, and order review.
 - **Launcher Icon:** Custom app icon included.
