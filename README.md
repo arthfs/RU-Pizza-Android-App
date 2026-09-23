@@ -1,4 +1,11 @@
+
+
+
+
+
+
 # Project 5: RU Pizza Android App
+https://github.com/user-attachments/assets/8abe2edd-3466-451d-90f5-47141c7c6dfa
 
 ## Description
 An Android mobile application version of Project 4 (excluding order export).
